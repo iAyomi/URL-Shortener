@@ -1,0 +1,20 @@
+interface HyperlinkProps {
+  link: string;
+  children: React.ReactNode;
+  self?: boolean;
+}
+
+const Hyperlink = ({ link, children }: HyperlinkProps) => {
+  return (
+    <a
+      href={link}
+      target={self ? "_self" : "_blank"}
+      rel="noopener noreferrer"
+      className="bg-gray-300 text-black font-medium p-2 rounded cursor-pointer"
+    >
+      {children}
+    </a>
+  );
+};
+
+export default Hyperlink;
