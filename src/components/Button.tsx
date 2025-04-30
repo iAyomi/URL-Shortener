@@ -2,6 +2,7 @@ import classNames from "classnames";
 
 interface ButtonProps {
   type: "button" | "submit" | "reset";
+  onClick?: (e: React.FormEvent) => void;
   children: React.ReactNode;
 }
 
@@ -11,14 +12,15 @@ const backgroundColor = {
   reset: null,
 };
 
-const Button = ({ type, children }: ButtonProps) => {
+const Button = ({ type, onClick, children }: ButtonProps) => {
   return (
     <button
       type={type}
       className={classNames(
-        "font-medium p-2 rounded cursor-pointer",
+        "text-xs font-medium p-2 rounded cursor-pointer md:text-sm",
         backgroundColor[type]
       )}
+      onClick={onClick}
     >
       {children}
     </button>

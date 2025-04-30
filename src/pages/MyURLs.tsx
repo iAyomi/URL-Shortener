@@ -4,8 +4,8 @@ import { myURLs } from "../utils/dummyData";
 const MyURLs = () => {
   return (
     <div className="py-40 flex flex-col gap-y-5 items-center justify-center min-h-screen bg-gray-200">
-      <div className="w-1/2 flex gap-x-3 justify-start items-center">
-        <label htmlFor="searchValue" className="text-xl font-bold">
+      <div className="w-[90%] flex gap-x-3 justify-start items-center lg:w-1/2">
+        <label htmlFor="searchValue" className="text-sm font-bold md:text-lg">
           Search
         </label>
 
@@ -14,7 +14,7 @@ const MyURLs = () => {
           id="searchValue"
           name="searchValue"
           placeholder="Search for a URL"
-          className="w-full p-2 border-2 border-gray-600 rounded-md"
+          className="w-full p-2 border-2 border-gray-600 rounded-md text-xs md:text-sm"
         />
       </div>
 

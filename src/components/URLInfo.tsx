@@ -19,29 +19,33 @@ const URLInfo = ({
   return (
     <div
       key={id}
-      className="w-1/2 p-5 flex flex-col gap-y-3 items-center bg-white rounded shadow-md"
+      className="w-[90%] p-5 flex flex-col gap-y-3 items-start bg-white rounded shadow-md lg:w-1/2"
     >
-      <div className="flex flex-col gap-y-3 text-center">
-        <div className="flex justify-center items-center gap-x-3">
+      <div className="flex flex-col gap-y-3">
+        <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-3 md:justify-start md:items-center">
           <h2 className="text-sm font-medium">Your Long URL:</h2>
-          <p className="p-1 border-2 border-gray-600 rounded-md">{longURL}</p>
+          <p className="p-1 border-2 border-gray-600 rounded-md text-xs md:text-sm">
+            {longURL}
+          </p>
         </div>
 
-        <div className="flex justify-center items-center gap-x-3">
+        <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-3 md:justify-start md:items-center">
           <h2 className="text-sm font-medium">Your Shortened URL:</h2>
-          <p className="p-1 border-2 border-gray-600 rounded-md">{shortURL}</p>
+          <p className="p-1 border-2 border-gray-600 rounded-md text-xs md:text-sm">
+            {shortURL}
+          </p>
         </div>
       </div>
 
-      <div className="flex justify-center items-center gap-x-5">
-        <div className="flex justify-center items-center gap-x-2">
+      <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-5">
+        <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-2 md:justify-start md:items-center">
           <h2 className="text-sm font-medium">Date Created:</h2>
-          <p>{dateCreated}</p>
+          <p className="text-xs md:text-sm">{dateCreated}</p>
         </div>
 
-        <div className="flex justify-center items-center gap-x-2">
+        <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-2 md:justify-start md:items-center">
           <h2 className="text-sm font-medium">No. of Clicks:</h2>
-          <p>{noOfClicks}</p>
+          <p className="text-xs md:text-sm">{noOfClicks}</p>
         </div>
       </div>
 
