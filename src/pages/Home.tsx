@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "../components/Button";
 import FormResults from "../components/FormResults";
+import { Header, Text } from "../components/Typography";
 import { formResults } from "../utils/dummyData";
 
 const Home = () => {
@@ -14,13 +15,11 @@ const Home = () => {
   return (
     <div className="flex flex-col gap-y-5 items-center justify-center min-h-screen bg-gray-200">
       <div className="flex flex-col gap-y-3 text-center">
-        <h1 className="text-xl font-extrabold md:text-3xl">
-          Welcome to the Original URL Shortener!
-        </h1>
-        <p className="text-sm md:text-normal">
+        <Header>Welcome to the Original URL Shortener!</Header>
+        <Text>
           This is a simple URL shortener application that allows you to shorten
           long URLs and manage your shortened links.
-        </p>
+        </Text>
       </div>
 
       <div className="w-[90%] p-5 bg-white rounded shadow-md lg:w-1/2">

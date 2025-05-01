@@ -1,5 +1,6 @@
 import Button from "./Button";
 import Hyperlink from "./Hyperlink";
+import { SubHeader, BorderedText } from "./Typography";
 
 interface FormResultsProps {
   longURL: string;
@@ -10,14 +11,10 @@ const FormResults = ({ longURL, shortURL }: FormResultsProps) => {
   return (
     <div className="w-[90%] p-5 flex flex-col gap-y-5 items-center bg-white rounded shadow-md lg:w-1/2">
       <div className="flex flex-col gap-y-3 text-center">
-        <h2 className="text-sm font-bold md:text-lg">Your Long URL:</h2>
-        <p className="p-2 border-2 border-gray-600 rounded-md text-xs md:text-sm">
-          {longURL}
-        </p>
-        <h2 className="text-sm font-bold md:text-lg">Your Shortened URL:</h2>
-        <p className="p-2 border-2 border-gray-600 rounded-md text-xs md:text-sm">
-          {shortURL}
-        </p>
+        <SubHeader>Your Long URL:</SubHeader>
+        <BorderedText>{longURL}</BorderedText>
+        <SubHeader>Your Shortened URL:</SubHeader>
+        <BorderedText>{shortURL}</BorderedText>
       </div>
 
       <div className="w-fit flex gap-x-3">

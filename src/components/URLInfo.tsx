@@ -1,5 +1,6 @@
 import Button from "./Button";
 import Hyperlink from "./Hyperlink";
+import { SubHeader, BorderedText, Text } from "./Typography";
 
 interface URLProps {
   id: number;
@@ -23,29 +24,25 @@ const URLInfo = ({
     >
       <div className="flex flex-col gap-y-3">
         <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-3 md:justify-start md:items-center">
-          <h2 className="text-sm font-medium">Your Long URL:</h2>
-          <p className="p-1 border-2 border-gray-600 rounded-md text-xs md:text-sm">
-            {longURL}
-          </p>
+          <SubHeader>Your Long URL:</SubHeader>
+          <BorderedText>{longURL}</BorderedText>
         </div>
 
         <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-3 md:justify-start md:items-center">
-          <h2 className="text-sm font-medium">Your Shortened URL:</h2>
-          <p className="p-1 border-2 border-gray-600 rounded-md text-xs md:text-sm">
-            {shortURL}
-          </p>
+          <SubHeader>Your Shortened URL:</SubHeader>
+          <BorderedText>{shortURL}</BorderedText>
         </div>
       </div>
 
       <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-5">
-        <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-2 md:justify-start md:items-center">
-          <h2 className="text-sm font-medium">Date Created:</h2>
-          <p className="text-xs md:text-sm">{dateCreated}</p>
+        <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-3 md:justify-start md:items-center">
+          <SubHeader>Date Created:</SubHeader>
+          <Text>{dateCreated}</Text>
         </div>
 
-        <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-2 md:justify-start md:items-center">
-          <h2 className="text-sm font-medium">No. of Clicks:</h2>
-          <p className="text-xs md:text-sm">{noOfClicks}</p>
+        <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-3 md:justify-start md:items-center">
+          <SubHeader>No. of Clicks:</SubHeader>
+          <Text>{noOfClicks}</Text>
         </div>
       </div>
 
