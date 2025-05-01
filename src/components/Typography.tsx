@@ -16,7 +16,7 @@ export const Text = ({ children }: TypographyProps) => {
 
 export const BorderedText = ({ children }: TypographyProps) => {
   return (
-    <p className="p-2 border-2 border-gray-600 rounded-md text-xs md:text-sm">
+    <p className="m-auto max-w-[90%] p-2 border-2 border-gray-600 rounded-md text-xs overflow-auto cursor-pointer md:text-sm">
       {children}
     </p>
   );
