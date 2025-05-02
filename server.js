@@ -21,11 +21,57 @@ app.post("/shorten", (req, res) => {
     return res.status(400).json({ error: "URL is required" });
   }
 
+  if (urlMap[longURL]) {
+    return res.json({
+      longURL,
+      shortURL: urlMap[longURL].shortURL,
+      message: "URL already exists",
+    });
+  }
+
   const shortURLid = nanoid(6);
-  urlMap[shortURLid] = longURL;
   const shortURL = `http://localhost:${PORT}/${shortURLid}`;
+  const dateCreated = new Date().toUTCString();
+  const accessCount = 0;
+
+  urlMap[longURL] = {
+    shortURLid,
+    longURL,
+    shortURL,
+    dateCreated,
+    accessCount,
+  };
 
   res.json({ longURL, shortURL });
+});
+
+app.get("/myURLs", (req, res) => {
+  const query = req.query.search?.toLowerCase() || "";
+
+  const filteredURLs = Object.entries(urlMap)
+    .filter(([longURL, data]) => {
+      return longURL.toLowerCase().includes(query);
+    })
+    .map(([longURL, data]) => ({
+      ...data,
+    }));
+
+  res.json(filteredURLs);
+});
+
+app.get("/:shortURLid", (req, res) => {
+  const { shortURLid } = req.params;
+
+  const foundObjWithId = Object.entries(urlMap).find(
+    ([_, data]) => data.shortURLid === shortURLid
+  );
+
+  if (foundObjWithId) {
+    foundObjWithId[1].accessCount += 1;
+    return res.redirect(foundObjWithId[1].longURL);
+  }
+
+  res.status(404).json({ error: "URL not found" });
 });
 
 app.listen(PORT, () => {
