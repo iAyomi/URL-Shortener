@@ -2,14 +2,39 @@ import { useState } from "react";
 import Button from "../components/Button";
 import FormResults from "../components/FormResults";
 import { Header, Text } from "../components/Typography";
-import { formResults } from "../utils/dummyData";
 
 const Home = () => {
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formValues, setFormValues] = useState({
+    longURL: "",
+  });
 
-  const shortenURL = (e: React.FormEvent) => {
+  const [reqData, setReqData] = useState<null | reqDataType>(null);
+
+  const handleLongURLInput = (e: { target: { value: string } }) => {
+    setFormValues((prevFormValues) => ({
+      ...prevFormValues,
+      longURL: e.target.value,
+    }));
+  };
+
+  const handleURLSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    setReqData(null);
+
+    try {
+      const response = await fetch("http://localhost:4000/shorten", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formValues),
+      });
+
+      const data = await response.json();
+      setReqData(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -23,12 +48,15 @@ const Home = () => {
       </div>
 
       <div className="w-[90%] p-5 bg-white rounded shadow-md lg:w-1/2">
-        <form className="flex flex-col gap-y-3 text-center">
+        <form
+          className="flex flex-col gap-y-3 text-center"
+          onSubmit={handleURLSubmit}
+        >
           <label htmlFor="url" className="text-sm font-bold md:text-lg">
             Shorten a long URL
           </label>
           <input
-            type="text"
+            type="url"
             id="url"
             name="url"
             placeholder="https://example.com/very/long/url"
@@ -36,21 +64,22 @@ const Home = () => {
             autoComplete="off"
             autoFocus
             required
+            onChange={handleLongURLInput}
           />
-          <Button type="submit" onClick={shortenURL}>
-            Shorten URL
-          </Button>
+          <Button type="submit">Shorten URL</Button>
         </form>
       </div>
 
-      {formSubmitted ? (
-        <FormResults
-          longURL={formResults?.longURL}
-          shortURL={formResults?.shortURL}
-        />
-      ) : null}
+      {reqData && (
+        <FormResults longURL={reqData?.longURL} shortURL={reqData?.shortURL} />
+      )}
     </div>
   );
 };
 
 export default Home;
+
+type reqDataType = {
+  longURL: string;
+  shortURL: string;
+};
