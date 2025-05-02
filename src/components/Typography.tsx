@@ -1,7 +1,3 @@
-interface TypographyProps {
-  children: React.ReactNode;
-}
-
 export const Header = ({ children }: TypographyProps) => {
   return <h1 className="text-xl font-extrabold md:text-3xl">{children}</h1>;
 };
@@ -21,3 +17,7 @@ export const BorderedText = ({ children }: TypographyProps) => {
     </p>
   );
 };
+
+interface TypographyProps {
+  children: React.ReactNode;
+}

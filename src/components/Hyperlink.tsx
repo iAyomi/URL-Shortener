@@ -4,7 +4,7 @@ interface HyperlinkProps {
   self?: boolean;
 }
 
-const Hyperlink = ({ link, children }: HyperlinkProps) => {
+const Hyperlink = ({ link, children, self }: HyperlinkProps) => {
   return (
     <a
       href={link}

@@ -2,14 +2,6 @@ import Button from "./Button";
 import Hyperlink from "./Hyperlink";
 import { SubHeader, BorderedText, Text } from "./Typography";
 
-interface URLProps {
-  id: number;
-  longURL: string;
-  shortURL: string;
-  dateCreated: string;
-  noOfClicks: number;
-}
-
 const URLInfo = ({
   id,
   longURL,
@@ -20,9 +12,9 @@ const URLInfo = ({
   return (
     <div
       key={id}
-      className="w-[90%] p-5 flex flex-col gap-y-3 items-start bg-white rounded shadow-md lg:w-1/2"
+      className="relative w-[90%] p-5 flex flex-col gap-y-3 items-start bg-white rounded shadow-md lg:w-1/2"
     >
-      <div className="flex flex-col gap-y-3">
+      <div className="w-full flex flex-col gap-y-3">
         <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-3 md:justify-start md:items-center">
           <SubHeader>Your Long URL:</SubHeader>
           <BorderedText>{longURL}</BorderedText>
@@ -34,7 +26,7 @@ const URLInfo = ({
         </div>
       </div>
 
-      <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-5">
+      <div className="w-full flex flex-col gap-y-3 md:flex-row md:gap-x-5">
         <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-3 md:justify-start md:items-center">
           <SubHeader>Date Created:</SubHeader>
           <Text>{dateCreated}</Text>
@@ -55,3 +47,11 @@ const URLInfo = ({
 };
 
 export default URLInfo;
+
+interface URLProps {
+  id: string;
+  longURL: string;
+  shortURL: string;
+  dateCreated: string;
+  noOfClicks: number;
+}
