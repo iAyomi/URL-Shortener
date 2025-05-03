@@ -14,7 +14,46 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.post("/shorten", (req, res) => {
+// Get URL Stats by shortURLid
+app.get("/api/statistic/:shortURLid", (req, res) => {
+  const { shortURLid } = req.params;
+
+  if (!shortURLid) {
+    return res.status(400).json({ error: "Short URL ID is required" });
+  }
+
+  const foundObjWithId = Object.entries(urlMap).find(
+    ([_, data]) => data.shortURLid === shortURLid
+  );
+
+  if (foundObjWithId) {
+    return res.json({
+      longURL: foundObjWithId[1].longURL,
+      dateCreated: foundObjWithId[1].dateCreated,
+      accessCount: foundObjWithId[1].accessCount,
+    });
+  }
+
+  res.status(404).json({ error: "Short URL not found" });
+});
+
+// Get all URL list
+app.get("/api/list", (req, res) => {
+  const query = req.query.search?.toLowerCase() || "";
+
+  const filteredURLs = Object.entries(urlMap)
+    .filter(([longURL, data]) => {
+      return longURL.toLowerCase().includes(query);
+    })
+    .map(([longURL, data]) => ({
+      ...data,
+    }));
+
+  res.json({ filteredURLs });
+});
+
+// Encode a URL
+app.post("/api/encode", (req, res) => {
   const { longURL } = req.body;
 
   if (!longURL) {
@@ -45,20 +84,26 @@ app.post("/shorten", (req, res) => {
   res.json({ longURL, shortURL });
 });
 
-app.get("/myURLs", (req, res) => {
-  const query = req.query.search?.toLowerCase() || "";
+// Decode a URL
+app.post("/api/decode", (req, res) => {
+  const { shortURLid } = req.body;
 
-  const filteredURLs = Object.entries(urlMap)
-    .filter(([longURL, data]) => {
-      return longURL.toLowerCase().includes(query);
-    })
-    .map(([longURL, data]) => ({
-      ...data,
-    }));
+  if (!shortURLid) {
+    return res.status(400).json({ error: "Short URL ID is required" });
+  }
 
-  res.json(filteredURLs);
+  const foundObjWithId = Object.entries(urlMap).find(
+    ([_, data]) => data.shortURLid === shortURLid
+  );
+
+  if (foundObjWithId) {
+    return res.json({ longURL: foundObjWithId[1].longURL });
+  }
+
+  res.status(404).json({ error: "Short URL not found" });
 });
 
+// Redirect shortURL => longURL
 app.get("/:shortURLid", (req, res) => {
   const { shortURLid } = req.params;
 
