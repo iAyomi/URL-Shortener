@@ -3,18 +3,22 @@ export const Header = ({ children }: TypographyProps) => {
 };
 
 export const SubHeader = ({ children }: TypographyProps) => {
-  return <h2 className="text-sm font-bold md:text-lg">{children}</h2>;
+  return <h2 className="w-fit text-sm font-bold md:text-lg">{children}</h2>;
 };
 
 export const Text = ({ children }: TypographyProps) => {
   return <p className="text-sm md:text-normal">{children}</p>;
 };
 
-export const BorderedText = ({ children }: TypographyProps) => {
+export const BorderedText = ({ text }: { text: string }) => {
   return (
-    <p className="m-auto max-w-[90%] p-2 border-2 border-gray-600 rounded-md text-xs overflow-auto cursor-pointer md:text-sm">
-      {children}
-    </p>
+    <input
+      type="text"
+      readOnly
+      value={text}
+      className="w-[70%] p-2 border-2 border-gray-600 rounded-md text-xs cursor-pointer md:text-sm"
+      title="Disabled Input"
+    />
   );
 };
 

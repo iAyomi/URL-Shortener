@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../components/Button";
 import FormResults from "../components/FormResults";
 import { Header, Text } from "../components/Typography";
+import { API_BASE_URL } from "../utils/index";
 
 const Home = () => {
   const [formValues, setFormValues] = useState({
@@ -22,7 +23,7 @@ const Home = () => {
     setReqData(null);
 
     try {
-      const response = await fetch("http://localhost:4000/shorten", {
+      const response = await fetch(`${API_BASE_URL}/encode`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

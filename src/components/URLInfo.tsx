@@ -17,12 +17,12 @@ const URLInfo = ({
       <div className="w-full flex flex-col gap-y-3">
         <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-3 md:justify-start md:items-center">
           <SubHeader>Your Long URL:</SubHeader>
-          <BorderedText>{longURL}</BorderedText>
+          <BorderedText text={longURL} />
         </div>
 
         <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-3 md:justify-start md:items-center">
           <SubHeader>Your Shortened URL:</SubHeader>
-          <BorderedText>{shortURL}</BorderedText>
+          <BorderedText text={shortURL} />
         </div>
       </div>
 

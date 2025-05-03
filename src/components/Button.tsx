@@ -1,11 +1,5 @@
 import classNames from "classnames";
 
-interface ButtonProps {
-  type: "button" | "submit" | "reset";
-  onClick?: (e: React.FormEvent) => void;
-  children: React.ReactNode;
-}
-
 const backgroundColor = {
   button: "bg-gray-300 text-black",
   submit: "bg-blue-500 text-white",
@@ -28,3 +22,9 @@ const Button = ({ type, onClick, children }: ButtonProps) => {
 };
 
 export default Button;
+
+interface ButtonProps {
+  type: "button" | "submit" | "reset";
+  onClick?: (e: React.FormEvent) => void;
+  children: React.ReactNode;
+}

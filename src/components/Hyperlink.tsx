@@ -1,9 +1,3 @@
-interface HyperlinkProps {
-  link: string;
-  children: React.ReactNode;
-  self?: boolean;
-}
-
 const Hyperlink = ({ link, children, self }: HyperlinkProps) => {
   return (
     <a
@@ -18,3 +12,9 @@ const Hyperlink = ({ link, children, self }: HyperlinkProps) => {
 };
 
 export default Hyperlink;
+
+interface HyperlinkProps {
+  link: string;
+  children: React.ReactNode;
+  self?: boolean;
+}

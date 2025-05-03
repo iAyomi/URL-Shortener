@@ -5,11 +5,11 @@ import { SubHeader, BorderedText } from "./Typography";
 const FormResults = ({ longURL, shortURL }: FormResultsProps) => {
   return (
     <div className="relative w-[90%] p-5 flex flex-col gap-y-5 items-center bg-white rounded shadow-md lg:w-1/2">
-      <div className="w-full flex flex-col gap-y-3 text-center">
+      <div className="w-full flex flex-col gap-y-3 items-center">
         <SubHeader>Your Long URL:</SubHeader>
-        <BorderedText>{longURL}</BorderedText>
+        <BorderedText text={longURL} />
         <SubHeader>Your Shortened URL:</SubHeader>
-        <BorderedText>{shortURL}</BorderedText>
+        <BorderedText text={shortURL} />
       </div>
 
       <div className="w-fit flex gap-x-3">
