@@ -60,12 +60,12 @@ const MyURLs = () => {
 
       {urlList.map((url) => (
         <URLInfo
-          key={url?.shortURLid}
-          id={url?.shortURLid}
+          key={url?.shortURLpath}
+          id={url?.shortURLpath}
           longURL={url?.longURL}
           shortURL={url?.shortURL}
           dateCreated={url?.dateCreated}
-          noOfClicks={url?.accessCount}
+          noOfTimesAccessed={url?.accessCount}
         />
       ))}
     </div>

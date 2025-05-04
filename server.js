@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
 import { nanoid } from "nanoid";
-import { PORT } from "./src/utils";
 
 const app = express();
+const PORT = 4000;
 
 const urlMap = {};
 

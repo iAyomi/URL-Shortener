@@ -14,10 +14,12 @@ export const BorderedText = ({ text }: { text: string }) => {
   return (
     <input
       type="text"
+      id={`bordered-${text}`}
+      name={`bordered-${text}`}
       readOnly
       value={text}
       className="w-[70%] p-2 border-2 border-gray-600 rounded-md text-xs cursor-pointer md:text-sm"
-      title="Disabled Input"
+      title={`bordered-${text}`}
     />
   );
 };
