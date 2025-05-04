@@ -83,4 +83,5 @@ export default Home;
 type reqDataType = {
   longURL: string;
   shortURL: string;
+  message?: string;
 };

@@ -7,12 +7,14 @@ const MyURLs = () => {
   const [urlList, setUrlList] = useState<urlType[]>([]);
 
   const handleSearchValueInput = (e: { target: { value: string } }) => {
-    if (e.target.value.length === 0) {
+    const inputValue = e.target.value.trim();
+
+    if (inputValue.length === 0) {
       setSearchValue("");
     }
 
-    if (e.target.value.length > 2) {
-      setSearchValue(e.target.value);
+    if (inputValue.length > 2) {
+      setSearchValue(inputValue);
     }
   };
 
@@ -73,7 +75,7 @@ const MyURLs = () => {
 export default MyURLs;
 
 type urlType = {
-  shortURLid: string;
+  shortURLpath: string;
   longURL: string;
   shortURL: string;
   dateCreated: string;

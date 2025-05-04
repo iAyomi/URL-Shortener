@@ -7,7 +7,7 @@ const URLInfo = ({
   longURL,
   shortURL,
   dateCreated,
-  noOfClicks,
+  noOfTimesAccessed,
 }: URLProps) => {
   return (
     <div
@@ -33,8 +33,8 @@ const URLInfo = ({
         </div>
 
         <div className="flex flex-col gap-y-3 md:flex-row md:gap-x-3 md:justify-start md:items-center">
-          <SubHeader>No. of Clicks:</SubHeader>
-          <Text>{noOfClicks}</Text>
+          <SubHeader>No. of Times Accessed:</SubHeader>
+          <Text>{noOfTimesAccessed}</Text>
         </div>
       </div>
 
@@ -53,5 +53,5 @@ interface URLProps {
   longURL: string;
   shortURL: string;
   dateCreated: string;
-  noOfClicks: number;
+  noOfTimesAccessed: number;
 }
