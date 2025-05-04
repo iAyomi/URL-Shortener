@@ -1,6 +1,7 @@
 import Button from "./Button";
 import Hyperlink from "./Hyperlink";
 import { SubHeader, BorderedText } from "./Typography";
+import { handleCopyShortURL } from "../utils";
 
 const FormResults = ({ longURL, shortURL }: FormResultsProps) => {
   return (
@@ -13,7 +14,9 @@ const FormResults = ({ longURL, shortURL }: FormResultsProps) => {
       </div>
 
       <div className="w-fit flex gap-x-3">
-        <Button type="button">Copy</Button>
+        <Button type="button" onClick={() => handleCopyShortURL(shortURL)}>
+          Copy
+        </Button>
         <Hyperlink link={shortURL}>Go to Link</Hyperlink>
       </div>
 

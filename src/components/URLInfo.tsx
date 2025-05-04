@@ -1,6 +1,7 @@
 import Button from "./Button";
 import Hyperlink from "./Hyperlink";
 import { SubHeader, BorderedText, Text } from "./Typography";
+import { handleCopyShortURL } from "../utils";
 
 const URLInfo = ({
   id,
@@ -39,7 +40,9 @@ const URLInfo = ({
       </div>
 
       <div className="w-fit flex gap-x-3">
-        <Button type="button">Copy</Button>
+        <Button type="button" onClick={() => handleCopyShortURL(shortURL)}>
+          Copy
+        </Button>
         <Hyperlink link={shortURL}>Go to Link</Hyperlink>
       </div>
     </div>
