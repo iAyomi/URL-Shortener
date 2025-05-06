@@ -14,7 +14,7 @@ const Home = () => {
   const handleLongURLInput = (e: { target: { value: string } }) => {
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
-      longURL: e.target.value,
+      longURL: e.target.value.trim(),
     }));
   };
 

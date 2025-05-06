@@ -57,12 +57,13 @@ const MyURLs = () => {
 
       {urlList.map((url) => (
         <URLInfo
-          key={url?.shortURLpath}
-          id={url?.shortURLpath}
+          key={url?.id}
+          id={url?.id}
           longURL={url?.longURL}
           shortURL={url?.shortURL}
           dateCreated={url?.dateCreated}
           noOfTimesAccessed={url?.accessCount}
+          lastTimeAccessed={url?.lastTimeAccessed}
         />
       ))}
     </div>
@@ -72,9 +73,10 @@ const MyURLs = () => {
 export default MyURLs;
 
 type urlType = {
-  shortURLpath: string;
+  id: string;
   longURL: string;
   shortURL: string;
   dateCreated: string;
   accessCount: number;
+  lastTimeAccessed: string;
 };
