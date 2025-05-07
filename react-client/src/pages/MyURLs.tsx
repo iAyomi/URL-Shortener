@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import URLInfo from "../components/URLInfo";
-import { API_URL } from "../utils";
+import { API_ENDPOINTS } from "../utils";
 
 const MyURLs = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -20,14 +20,14 @@ const MyURLs = () => {
 
   const fetchMyURLs = async () => {
     try {
-      const response = await fetch(`${API_URL.LIST}${searchValue}`, {
+      const response = await fetch(`${API_ENDPOINTS.LIST}${searchValue}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       });
 
-      const data = await response.json();
+      const { data } = await response.json();
       setUrlList(data?.filteredURLs);
     } catch (err) {
       console.error(err);

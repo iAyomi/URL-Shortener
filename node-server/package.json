@@ -1,0 +1,21 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A simple url shortening service",
+  "main": "server.js",
+  "author": "Ayomi",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "cd src && node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+     "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
+  }
+}

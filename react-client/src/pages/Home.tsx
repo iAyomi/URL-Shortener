@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../components/Button";
 import FormResults from "../components/FormResults";
 import { Header, Text } from "../components/Typography";
-import { API_URL } from "../utils/index";
+import { API_ENDPOINTS } from "../utils/index";
 
 const Home = () => {
   const [formValues, setFormValues] = useState({
@@ -23,7 +23,7 @@ const Home = () => {
     setReqData(null);
 
     try {
-      const response = await fetch(API_URL.ENCODE, {
+      const response = await fetch(API_ENDPOINTS.ENCODE, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,7 +31,7 @@ const Home = () => {
         body: JSON.stringify(formValues),
       });
 
-      const data = await response.json();
+      const { data } = await response.json();
       setReqData(data);
     } catch (err) {
       console.log(err);
@@ -83,5 +83,4 @@ export default Home;
 type reqDataType = {
   longURL: string;
   shortURL: string;
-  message?: string;
 };

@@ -1,0 +1,153 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "URL Shortener API",
+    "description": "A simple URL shortening service. The service allows users to shorten long URLs, retrieve the original URL from a shortened one, and view statistics about the shortened URLs. It also provides a list of all shortened URLs with optional search functionality."
+  },
+  "host": "localhost:4000",
+  "basePath": "/",
+  "schemes": [
+    "http",
+       "https"
+  ],
+  "tags": [
+    {
+      "name": "URL Shortener",
+      "description": "Operations related to URL shortening and management."
+    }
+  ],
+  "paths": {
+    "/api/statistic/{shortURLpath}": {
+      "get": {
+        "description": "Retrieve all statistics for a shortened URL.",
+        "tags": [
+          "URL Shortener"
+        ],
+        "parameters": [
+          {
+            "name": "shortURLpath",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/list": {
+      "get": {
+        "description": "Retrieve list of all shortened URLs with optional search functionality.",
+        "tags": [
+          "URL Shortener"
+        ],
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/encode": {
+      "post": {
+        "description": "Generate a shortened URL for a given long URL.",
+        "tags": [
+          "URL Shortener"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "longURL": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/decode": {
+      "post": {
+        "description": "Revert a generated short URL back to the original long URL.",
+        "tags": [
+          "URL Shortener"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "shortURL": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/{shortURLpath}": {
+      "get": {
+        "description": "Redirect to the original URL from a shortened URL.",
+        "tags": [
+          "URL Shortener"
+        ],
+        "parameters": [
+          {
+            "name": "shortURLpath",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  }
+}

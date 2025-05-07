@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router";
 import AppRoutes from "./AppRoutes";
-import "./tailwind.css";
+import "./styles/tailwind.css";
 
 function App() {
   return (

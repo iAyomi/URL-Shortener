@@ -1,35 +1,11 @@
 {
-  "name": "url-shortener",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.1.4",
-    "classnames": "^2.5.1",
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-router": "^7.5.3",
-    "tailwindcss": "^4.1.4"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.22.0",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9.22.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^16.0.0",
-    "typescript": "~5.7.2",
-    "typescript-eslint": "^8.26.1",
-    "vite": "^6.3.1"
-  }
+    "license": "MIT",
+    "scripts": {
+        "start": "concurrently \"yarn start:server\" \"yarn start:client\"",
+        "start:server": "cd node-server && yarn && yarn dev",
+        "start:client": "cd react-client && yarn && yarn dev"
+    },
+    "devDependencies": {
+        "concurrently": "^9.1.2"
+    }
 }
