@@ -8,14 +8,17 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "cd src && node server.js"
+    "dev": "cd src && node server.js",
+    "test": "jest"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0"
   },
   "devDependencies": {
-     "swagger-autogen": "^2.23.7",
+    "jest": "^29.7.0",
+    "supertest": "^7.1.0",
+    "swagger-autogen": "^2.23.7",
     "swagger-ui-express": "^5.0.1"
   }
 }
