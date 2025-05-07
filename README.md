@@ -3,8 +3,15 @@
 Welcome to the original world of short URLs! 🚀
 This is a full-stack URL Shortener application built with **React** on the frontend and **Express.js** on the backend.
 
+![URL Shortener Preview](./assets/Preview1.png)
+
 You paste a long, awkward URL — we hand you back a shiny, short one.
+
+![URL Shortener Preview](./assets/Preview2.png)
+
 We also keep track of how many times your shiny link was used (because we care 🩹).
+
+![URL Shortener Preview](./assets/Preview3.png)
 
 ---
 
@@ -53,7 +60,7 @@ URL-Shortener/
 
 ```bash
 git clone https://github.com/iAyomi/URL-Shortener.git
-cd url-shortener
+cd URL-Shortener 
 ```
 
 ---
@@ -147,7 +154,7 @@ yarn test
 ## 💬 Contact
 
 Have questions or found a bug?
-[Open an issue](https://github.com/iAyomi/URL-Shortener/issues) or ping us through smoke signals (just kidding, use GitHub).
+[Open an issue](https://github.com/iAyomi/URL-Shortener/issues) or ping us through smoke signals (just kidding, use [Our Contact Page](https://iayomi.vercel.app/contact)).
 
 ---
 
