@@ -104,7 +104,7 @@ cd URL-Shortener
 yarn start
 ```
 
-Terminal 2 – We have a script implemented that runs both the node-server and the react-client server concurrently
+We already have a script implemented that runs both the node-server and the react-client server concurrently
 
 > By default:
 >
