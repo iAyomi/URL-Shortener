@@ -81,7 +81,7 @@ yarn
 
 ### 3. Run the Development Servers (Client + Server)
 
-Open two terminals (split your screen like a cool hacker 🧑‍💻)
+If you want to feel like a cool hacker🧑‍💻, open two terminals and split your screen
 
 **Terminal 1 – Start Node-Server:**
 
@@ -96,6 +96,15 @@ yarn dev
 cd react-client
 yarn dev
 ```
+
+Or otherwise, if you are a lazy programmer like me
+
+```bash
+cd URL-Shortener 
+yarn start
+```
+
+Terminal 2 – We have a script implemented that runs both the node-server and the react-client server concurrently
 
 > By default:
 >
