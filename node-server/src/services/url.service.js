@@ -2,6 +2,7 @@ import { urlDataByHash, urlDataByShortURLPath } from "../data/url.store.js";
 import isValidURL from "../utils/isValidURL.util.js";
 import hashURL from "../utils/hash.util.js";
 import truncateHash from "../utils/truncate.util.js";
+import findAlternateShortURLs from "../utils/findAlternateShortURLs.util.js";
 
 const PORT = process.env.PORT || 4000;
 
@@ -45,6 +46,57 @@ export const getAllURLs = (query = "") => {
   };
 };
 
+export const linkCustomURL = (longURL, customUrl) => {
+  if (!longURL) {
+    return { status: 400, error: "URL is required" };
+  }
+
+  if (!isValidURL(longURL)) {
+    return { status: 400, error: "Invalid URL format" };
+  }
+
+  if (urlDataByShortURLPath[customUrl]) {
+    const alternateShortURLs = findAlternateShortURLs(customUrl) || [];
+    return {
+      status: 409,
+      error: "Custom URL is already taken!",
+      options: alternateShortURLs,
+    };
+  }
+
+  const hashedLongURL = hashURL(longURL);
+
+  const shortURLpath = customUrl;
+  const shortURL = `http://localhost:${PORT}/${shortURLpath}`;
+  const dateCreated = urlDataByHash[hashedLongURL]
+    ? urlDataByHash[hashedLongURL].dateCreated
+    : new Date().toUTCString();
+
+  const dateModified = new Date().toUTCString();
+  const accessCount = urlDataByHash[hashedLongURL]
+    ? urlDataByHash[hashedLongURL].accessCount
+    : 0;
+
+  const lastTimeAccessed = urlDataByHash[hashedLongURL]
+    ? urlDataByHash[hashedLongURL].lastTimeAccessed
+    : null;
+
+  urlDataByHash[hashedLongURL] = {
+    shortURL,
+    dateCreated,
+    dateModified,
+    accessCount,
+    lastTimeAccessed,
+  };
+
+  urlDataByShortURLPath[shortURLpath] = {
+    longURL,
+    dateCreated,
+  };
+
+  return { longURL, shortURL };
+};
+
 export const encodeURL = (longURL) => {
   if (!longURL) {
     return { status: 400, error: "URL is required" };
@@ -66,18 +118,21 @@ export const encodeURL = (longURL) => {
   const shortURLpath = truncateHash(hashedLongURL, urlDataByShortURLPath);
   const shortURL = `http://localhost:${PORT}/${shortURLpath}`;
   const dateCreated = new Date().toUTCString();
+  const dateModified = new Date().toUTCString();
   const accessCount = 0;
   const lastTimeAccessed = null;
 
   urlDataByHash[hashedLongURL] = {
     shortURL,
     dateCreated,
+    dateModified,
     accessCount,
     lastTimeAccessed,
   };
 
   urlDataByShortURLPath[shortURLpath] = {
     longURL,
+    dateCreated,
   };
 
   return { longURL, shortURL };

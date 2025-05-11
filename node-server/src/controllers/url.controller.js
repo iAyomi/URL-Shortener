@@ -1,6 +1,7 @@
 import {
   getURLStatsByShortURLpath,
   getAllURLs,
+  linkCustomURL,
   encodeURL,
   decodeURL,
   redirectURL,
@@ -39,18 +40,24 @@ export const getAllURLsList = (req, res) => {
 };
 
 export const encode = (req, res) => {
-  const { longURL } = req.body;
+  const { longURL, customUrl } = req.body;
 
-  const result = encodeURL(longURL);
+  const result = customUrl
+    ? linkCustomURL(longURL, customUrl)
+    : encodeURL(longURL);
 
   if (result.error) {
-    return res.status(result.status).json({ error: result.error });
+    return res
+      .status(result.status)
+      .json({ error: result.error, options: result.options });
   }
 
   return res.status(200).json({
     success: true,
     data: result,
-    message: "URL encoded successfully!",
+    message: customUrl
+      ? "Custom URL linked successfully!"
+      : "URL encoded successfully!",
   });
 };
 
