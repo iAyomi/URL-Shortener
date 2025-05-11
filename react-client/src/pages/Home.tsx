@@ -6,6 +6,8 @@ import { API_ENDPOINTS } from "../utils/index";
 
 const Home = () => {
   const [reqData, setReqData] = useState<null | reqDataType>(null);
+  const [alternativeOptions, setAlternativeOptions] =
+    useState<null | alternativeOptionsType>(null);
 
   const [formValues, setFormValues] = useState({
     longURL: "",
@@ -36,10 +38,13 @@ const Home = () => {
         body: JSON.stringify(formValues),
       });
 
-      const { data } = await response.json();
-      setReqData(data);
-    } catch (err) {
-      console.log(err);
+      const result = await response.json();
+
+      if (!response.ok) setAlternativeOptions(result.options);
+
+      setReqData(result?.data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -54,7 +59,11 @@ const Home = () => {
       </div>
 
       <div className="w-[90%] p-5 bg-white rounded shadow-md lg:w-1/2">
-        <UrlForm onSubmit={handleURLSubmit} onChange={handleSetFormValues} />
+        <UrlForm
+          onSubmit={handleURLSubmit}
+          onChange={handleSetFormValues}
+          options={alternativeOptions}
+        />
       </div>
 
       {reqData && (
@@ -70,3 +79,8 @@ type reqDataType = {
   longURL: string;
   shortURL: string;
 };
+
+type alternativeOptionsType = {
+  id: string;
+  name: string;
+}[];
