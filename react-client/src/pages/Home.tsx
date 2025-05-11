@@ -1,20 +1,25 @@
 import { useState } from "react";
-import Button from "../components/Button";
+import UrlForm from "../components/UrlForm";
 import FormResults from "../components/FormResults";
 import { Header, Text } from "../components/Typography";
 import { API_ENDPOINTS } from "../utils/index";
 
 const Home = () => {
-  const [formValues, setFormValues] = useState({
-    longURL: "",
-  });
-
   const [reqData, setReqData] = useState<null | reqDataType>(null);
 
-  const handleLongURLInput = (e: { target: { value: string } }) => {
+  const [formValues, setFormValues] = useState({
+    longURL: "",
+    customUrl: "",
+  });
+
+  const handleSetFormValues = (e: {
+    target: { name: string; value: string };
+  }) => {
+    const { name, value } = e.target;
+
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
-      longURL: e.target.value.trim(),
+      [name]: value.trim(),
     }));
   };
 
@@ -49,26 +54,7 @@ const Home = () => {
       </div>
 
       <div className="w-[90%] p-5 bg-white rounded shadow-md lg:w-1/2">
-        <form
-          className="flex flex-col gap-y-3 text-center"
-          onSubmit={handleURLSubmit}
-        >
-          <label htmlFor="url" className="text-sm font-bold md:text-lg">
-            Shorten a long URL
-          </label>
-          <input
-            type="url"
-            id="url"
-            name="url"
-            placeholder="https://example.com/very/long/url"
-            className="p-2 border-2 border-gray-600 rounded-md text-xs md:text-sm"
-            autoComplete="off"
-            autoFocus
-            required
-            onChange={handleLongURLInput}
-          />
-          <Button type="submit">Shorten URL</Button>
-        </form>
+        <UrlForm onSubmit={handleURLSubmit} onChange={handleSetFormValues} />
       </div>
 
       {reqData && (
