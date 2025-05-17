@@ -1,10 +1,12 @@
+import dotenv from "dotenv";
 import { urlDataByHash, urlDataByShortURLPath } from "../data/url.store.js";
 import isValidURL from "../utils/isValidURL.util.js";
 import hashURL from "../utils/hash.util.js";
 import truncateHash from "../utils/truncate.util.js";
 import findAlternateShortURLs from "../utils/findAlternateShortURLs.util.js";
 
-const PORT = process.env.PORT || 4000;
+dotenv.config();
+const PORT = process.env.PORT;
 
 export const getURLStatsByShortURLpath = (shortURLpath) => {
   const data = urlDataByShortURLPath[shortURLpath];

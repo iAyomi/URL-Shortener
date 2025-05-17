@@ -2,9 +2,11 @@ import express from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import fs from "fs";
+import dotenv from "dotenv";
 import routes from "./routes/url.routes.js";
 
-const PORT = process.env.PORT || 4000;
+dotenv.config();
+const PORT = process.env.PORT;
 
 const swaggerDocument = JSON.parse(
   fs.readFileSync("./resources/swagger-output.json", "utf-8")
