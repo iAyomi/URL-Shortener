@@ -39,11 +39,11 @@ export const getAllURLsList = (req, res) => {
   });
 };
 
-export const encode = (req, res) => {
+export const encode = async (req, res) => {
   const { longURL, customUrl } = req.body;
 
   const result = customUrl
-    ? linkCustomURL(longURL, customUrl)
+    ? await linkCustomURL(longURL, customUrl)
     : encodeURL(longURL);
 
   if (result.error) {

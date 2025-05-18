@@ -48,7 +48,7 @@ export const getAllURLs = (query = "") => {
   };
 };
 
-export const linkCustomURL = (longURL, customUrl) => {
+export const linkCustomURL = async (longURL, customUrl) => {
   if (!longURL) {
     return { status: 400, error: "URL is required" };
   }
@@ -58,7 +58,8 @@ export const linkCustomURL = (longURL, customUrl) => {
   }
 
   if (urlDataByShortURLPath[customUrl]) {
-    const alternateShortURLs = findAlternateShortURLs(customUrl) || [];
+    const alternateShortURLs = await findAlternateShortURLs(customUrl);
+
     return {
       status: 409,
       error: "Custom URL is already taken!",
