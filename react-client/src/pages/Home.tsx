@@ -6,8 +6,9 @@ import { API_ENDPOINTS } from "../utils/index";
 
 const Home = () => {
   const [reqData, setReqData] = useState<null | reqDataType>(null);
-  const [alternativeOptions, setAlternativeOptions] =
-    useState<null | alternativeOptionsType>(null);
+  const [alternativeOptions, setAlternativeOptions] = useState<null | string[]>(
+    null
+  );
 
   const [formValues, setFormValues] = useState({
     longURL: "",
@@ -79,8 +80,3 @@ type reqDataType = {
   longURL: string;
   shortURL: string;
 };
-
-type alternativeOptionsType = {
-  id: string;
-  name: string;
-}[];

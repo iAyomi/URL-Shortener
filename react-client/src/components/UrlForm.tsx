@@ -60,11 +60,11 @@ const UrlForm = ({ onSubmit, onChange, options }: UrlFormProps) => {
             URL already taken. Choose an alternative URL option:
           </p>
           <div className="flex gap-x-2 items-center justify-center text-xs font-semibold md:text-sm">
-            {options.map(({ id, name }) => (
+            {options.map((option) => (
               <Option
-                key={id}
-                id={id}
-                name={name}
+                key={option}
+                id={option}
+                name={option}
                 onClick={handleOptionClick}
               />
             ))}
@@ -82,10 +82,5 @@ export default UrlForm;
 interface UrlFormProps {
   onSubmit: (e: React.FormEvent) => void;
   onChange: (e: { target: { name: string; value: string } }) => void;
-  options:
-    | null
-    | {
-        id: string;
-        name: string;
-      }[];
+  options: null | string[];
 }

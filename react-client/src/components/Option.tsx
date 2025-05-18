@@ -3,9 +3,9 @@ const Option = ({ id, name, onClick }: OptionProps) => {
     <span
       key={id}
       className="py-1 px-3 border-1 border-gray-600 rounded-md cursor-pointer"
-      onClick={() => onClick(name)}
+      onClick={() => onClick(name.trim())}
     >
-      {name}
+      {name.trim()}
     </span>
   );
 };
