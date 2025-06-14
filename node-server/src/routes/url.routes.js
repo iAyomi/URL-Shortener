@@ -5,6 +5,7 @@ import {
   encode,
   decode,
   redirect,
+  welcome,
 } from "../controllers/url.controller.js";
 
 const router = express.Router();
@@ -23,5 +24,8 @@ router.post("/api/decode", decode);
 
 // Redirect shortURL => longURL
 router.get("/:shortURLpath", redirect);
+
+// Welcome route
+router.get("/", welcome);
 
 export default router;
