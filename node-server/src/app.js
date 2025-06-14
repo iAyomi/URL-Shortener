@@ -28,6 +28,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(routes);
 
+// Error handling in production
 app.use((err, req, res, next) => {
   logger.error(err.stack);
   res.status(500).json({ error: err.message || "Internal Server Error" });
