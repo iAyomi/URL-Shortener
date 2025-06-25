@@ -30,13 +30,7 @@ app.use(cors());
 // API documentation
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.get("/", (req, res) => {
-  res.send(
-    "Welcome to the URL Shortener Service! Visit /api-docs for API documentation."
-  );
-});
-
-// app.use(routes);
+app.use(routes);
 
 // Error handling in production
 app.use((err, req, res, next) => {

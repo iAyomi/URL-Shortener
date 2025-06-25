@@ -1,12 +1,8 @@
-import dotenv from "dotenv";
 import { urlDataByHash, urlDataByShortURLPath } from "../data/url.store.js";
 import isValidURL from "../utils/isValidURL.util.js";
 import hashURL from "../utils/hash.util.js";
 import truncateHash from "../utils/truncate.util.js";
 import findAlternateShortURLs from "../utils/findAlternateShortURLs.util.js";
-
-dotenv.config();
-const PORT = process.env.PORT;
 
 export const getURLStatsByShortURLpath = (shortURLpath) => {
   const data = urlDataByShortURLPath[shortURLpath];
@@ -48,7 +44,7 @@ export const getAllURLs = (query = "") => {
   };
 };
 
-export const linkCustomURL = async (longURL, customUrl) => {
+export const linkCustomURL = async (longURL, customUrl, baseURL) => {
   if (!longURL) {
     return { status: 400, error: "URL is required" };
   }
@@ -70,7 +66,7 @@ export const linkCustomURL = async (longURL, customUrl) => {
   const hashedLongURL = hashURL(longURL);
 
   const shortURLpath = customUrl;
-  const shortURL = `http://localhost:${PORT}/${shortURLpath}`;
+  const shortURL = `${baseURL}/${shortURLpath}`;
   const dateCreated = urlDataByHash[hashedLongURL]
     ? urlDataByHash[hashedLongURL].dateCreated
     : new Date().toUTCString();
@@ -100,7 +96,7 @@ export const linkCustomURL = async (longURL, customUrl) => {
   return { longURL, shortURL };
 };
 
-export const encodeURL = (longURL) => {
+export const encodeURL = (longURL, baseURL) => {
   if (!longURL) {
     return { status: 400, error: "URL is required" };
   }
@@ -119,7 +115,7 @@ export const encodeURL = (longURL) => {
   }
 
   const shortURLpath = truncateHash(hashedLongURL, urlDataByShortURLPath);
-  const shortURL = `http://localhost:${PORT}/${shortURLpath}`;
+  const shortURL = `${baseURL}/${shortURLpath}`;
   const dateCreated = new Date().toUTCString();
   const dateModified = new Date().toUTCString();
   const accessCount = 0;

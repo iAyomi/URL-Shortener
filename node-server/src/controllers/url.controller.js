@@ -8,7 +8,7 @@ import {
   redirectURL,
 } from "../services/url.service.js";
 
-export const getURLStats = async (req, res) => {
+export const getURLStats = (req, res) => {
   const { shortURLpath } = req.params;
   logger.info(`Fetching stats for short URL path: ${shortURLpath}`);
 
@@ -28,7 +28,7 @@ export const getURLStats = async (req, res) => {
   });
 };
 
-export const getAllURLsList = async (req, res) => {
+export const getAllURLsList = (req, res) => {
   const query = req.query.search?.toLowerCase() || "";
 
   logger.info(`Fetching all URLs with search query: ${query}`);
@@ -52,6 +52,11 @@ export const getAllURLsList = async (req, res) => {
 export const encode = async (req, res) => {
   const { longURL, customUrl } = req.body;
 
+  const protocol = req.protocol;
+  const host = req.get("host");
+
+  const baseURL = `${protocol}://${host}`;
+
   logger.info(
     customUrl
       ? `Linking custom URL: ${customUrl} to long URL: ${longURL}`
@@ -59,8 +64,8 @@ export const encode = async (req, res) => {
   );
 
   const result = customUrl
-    ? await linkCustomURL(longURL, customUrl)
-    : encodeURL(longURL);
+    ? await linkCustomURL(longURL, customUrl, baseURL)
+    : encodeURL(longURL, baseURL);
 
   if (result.error) {
     logger.error(
@@ -86,7 +91,7 @@ export const encode = async (req, res) => {
   });
 };
 
-export const decode = async (req, res) => {
+export const decode = (req, res) => {
   const { shortURL } = req.body;
 
   logger.info(`Decoding short URL: ${shortURL}`);
@@ -107,7 +112,7 @@ export const decode = async (req, res) => {
   });
 };
 
-export const redirect = async (req, res) => {
+export const redirect = (req, res) => {
   const { shortURLpath } = req.params;
 
   logger.info(`Redirecting short URL path: ${shortURLpath}`);
@@ -124,7 +129,7 @@ export const redirect = async (req, res) => {
   return res.redirect(result.longURL);
 };
 
-export const welcome = async (req, res) => {
+export const welcome = (req, res) => {
   res.send(
     "Welcome to the URL Shortener Service! Visit /api-docs for API documentation."
   );
