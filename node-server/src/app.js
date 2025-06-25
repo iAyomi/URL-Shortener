@@ -26,6 +26,12 @@ app.use(
 // API documentation
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+app.use("/", (req, res) => {
+  res.send(
+    "Welcome to the URL Shortener Service! Visit /api-docs for API documentation."
+  );
+});
+
 app.use(routes);
 
 // Error handling in production
