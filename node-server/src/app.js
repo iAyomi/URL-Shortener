@@ -6,9 +6,9 @@ import logger from "./logger/url.logger.js";
 import routes from "./routes/url.routes.js";
 import swaggerUi from "swagger-ui-express";
 
-const swaggerDocument = JSON.parse(
-  fs.readFileSync("./resources/swagger-output.json", "utf-8")
-);
+// const swaggerDocument = JSON.parse(
+//   fs.readFileSync("./resources/swagger-output.json", "utf-8")
+// );
 
 const app = express();
 
@@ -24,7 +24,7 @@ app.use(
 );
 
 // API documentation
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(routes);
 
